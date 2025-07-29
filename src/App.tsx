@@ -21,7 +21,7 @@ function App() {
     setEffectiveDate(now.toISOString().slice(0, 16));
   }, []);
 
-  const showMessage = (text, type) => {
+  const showMessage = (text: string, type: string) => {
     setMessage({ text, type });
 
     setTimeout(() => setMessage({ text: '', type: '' }), 5000);
@@ -42,8 +42,8 @@ function App() {
       } else {
         showMessage(`Error: ${data.message || response.statusText}`, 'error');
       }
-    } catch (error) {
-      showMessage(`Network Error: ${error.message}`, 'error');
+    } catch (error: unknown) {
+      showMessage(`Network Error: ${error}`, 'error');
     } finally {
       setIsLoadingGet(false);
     }
@@ -90,7 +90,7 @@ function App() {
         showMessage(`Error updating subscription: ${errorMessage}`, 'error');
       }
     } catch (error) {
-      showMessage(`Network Error: ${error.message}`, 'error');
+      showMessage(`Network Error: ${error}`, 'error');
     } finally {
       setIsLoadingUpdate(false);
     }
